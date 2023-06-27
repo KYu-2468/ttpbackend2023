@@ -4,6 +4,9 @@ const PORT = "8080";
 
 const app = express();
 
+// Allow express to parse json from API requests
+app.use(express.json());
+
 // Mount on API
 app.use("/api", require("./api"));
 

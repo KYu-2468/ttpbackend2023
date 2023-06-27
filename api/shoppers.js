@@ -16,4 +16,35 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.post("/", async (req, res, next) => {
+  try {
+    // 1. Retrieve information sent from api request via req variable - Mahatir
+
+    const { firstName, lastName, size } = req.body;
+
+    const newShopper = await Shopper.create({
+      firstName,
+      lastName,
+      size,
+    });
+
+    console.log(req.body);
+
+    // 2. Create a new Shopper using sequelize Shopper variable - Mohammed
+
+    // const addShopper = [
+    //   { firstName: "Mohammed", lastName: "Fadel", size: 10 },
+    //   { firstName: "Rob", lastName: "Bob", size: 13 },
+    // ];
+    // const addSeed = async () => {
+    //   await Shopper.bulkCreate(seedShopper);
+    // };
+
+    // 3. return 201 - Mohammed
+    res.status(201).json(newShopper);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
